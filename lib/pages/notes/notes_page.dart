@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../main.dart';
 import 'widgets/note_item_widget.dart';
 
 class NotesPage extends StatefulWidget {
@@ -12,7 +13,19 @@ class _NotesPageState extends State<NotesPage> {
   bool loading = false;
   List<String> notes = [];
 
-  void addNote(String note) => setState(() => notes.add(note));
+  void addNote(String note) {
+    if (notes.any((e) => e.toLowerCase() == note.toLowerCase())) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Esta nota já existe'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    } else {
+      setState(() => notes.add(note));
+    }
+  }
+
   void removeNote(String note) => setState(() => notes.remove(note));
 
   Future<void> fetch() async {
@@ -40,7 +53,7 @@ class _NotesPageState extends State<NotesPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Bloco de Notas',
+          'Notas',
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w600,
@@ -50,7 +63,13 @@ class _NotesPageState extends State<NotesPage> {
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
-        onPressed: () async {},
+        onPressed: () async {
+          var note = await Navigator.pushNamed(context, AppRoutes.NEW_NOTES);
+
+          if (note != null) {
+            addNote(note as String);
+          }
+        },
       ),
       body: loading == true
           ? const Center(child: CircularProgressIndicator())

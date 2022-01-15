@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'pages/new_note/new_note_page.dart';
 import 'pages/notes/notes_page.dart';
 
 void main() {
@@ -33,7 +34,16 @@ class App extends StatelessWidget {
         ),
       ),
       themeMode: ThemeMode.dark,
-      home: const NotesPage(),
+      initialRoute: AppRoutes.NOTES,
+      routes: {
+        AppRoutes.NOTES: (context) => const NotesPage(),
+        AppRoutes.NEW_NOTES: (context) => NewNotePage(),
+      },
     );
   }
+}
+
+class AppRoutes {
+  static const String NOTES = '/notes';
+  static const String NEW_NOTES = '$NOTES/new';
 }
