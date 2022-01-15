@@ -15,6 +15,7 @@ class App extends StatelessWidget {
       title: 'Flutter Shortcuts',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        primarySwatch: Colors.deepPurple,
         primaryColor: Colors.deepPurple,
         primaryColorDark: Colors.deepPurple.shade700,
         primaryColorLight: Colors.deepPurple.shade200,
@@ -32,12 +33,19 @@ class App extends StatelessWidget {
           foregroundColor: Colors.white,
           elevation: 0,
         ),
+        inputDecorationTheme: Theme.of(context).inputDecorationTheme.copyWith(
+              border: const OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: Colors.deepPurple,
+                ),
+              ),
+            ),
       ),
-      themeMode: ThemeMode.dark,
+      themeMode: ThemeMode.light,
       initialRoute: AppRoutes.NOTES,
       routes: {
         AppRoutes.NOTES: (context) => const NotesPage(),
-        AppRoutes.NEW_NOTES: (context) => NewNotePage(),
+        AppRoutes.NEW_NOTES: (context) => const NewNotePage(),
       },
     );
   }

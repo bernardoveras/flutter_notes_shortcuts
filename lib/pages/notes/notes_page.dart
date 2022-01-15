@@ -84,6 +84,7 @@ class _NotesPageState extends State<NotesPage> {
                   ),
                 )
               : ListView.separated(
+                  physics: const BouncingScrollPhysics(),
                   itemCount: notes.length,
                   padding: const EdgeInsets.all(20),
                   separatorBuilder: (context, index) => const Divider(height: 24),
