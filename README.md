@@ -1,8 +1,6 @@
-# 💣 Note app using Shortcuts in Flutter
+![](.github/preview.gif)
 
 ---
-# Preview:
-![](.github/preview.gif)
 
 ### Tools used:
 - Flutter
