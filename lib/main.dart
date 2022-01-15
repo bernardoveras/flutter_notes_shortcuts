@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'pages/notas/notas_page.dart';
+import 'pages/notes/notes_page.dart';
 
 void main() {
   runApp(const App());
@@ -31,7 +31,7 @@ class App extends StatelessWidget {
         ),
       ),
       themeMode: ThemeMode.dark,
-      home: const NotasPage(),
+      home: const NotesPage(),
     );
   }
 }
