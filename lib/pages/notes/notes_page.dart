@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quick_actions/quick_actions.dart';
 import '../../main.dart';
 import 'widgets/note_item_widget.dart';
 
@@ -10,6 +11,7 @@ class NotesPage extends StatefulWidget {
 }
 
 class _NotesPageState extends State<NotesPage> {
+  final quickActions = const QuickActions();
   bool loading = false;
   List<String> notes = [];
 
@@ -32,20 +34,31 @@ class _NotesPageState extends State<NotesPage> {
     setState(() => loading = true);
     await Future.delayed(const Duration(seconds: 1));
 
-    setState(() {
-      notes = [
-        'Fazer dever de casa',
-        'Aprender Flutter',
-      ];
-    });
+    setState(() => notes = []);
 
     setState(() => loading = false);
   }
 
   @override
   void initState() {
-    fetch();
     super.initState();
+    quickActions.setShortcutItems([
+      const ShortcutItem(
+        type: 'note',
+        localizedTitle: 'Nova nota',
+        icon: 'ic_add.png',
+      ),
+    ]);
+    quickActions.initialize((type) async {
+      if (type == 'note') {
+        var note = await Navigator.pushNamed(context, AppRoutes.NEW_NOTES);
+
+        if (note != null) {
+          addNote(note as String);
+        }
+      }
+    });
+    fetch();
   }
 
   @override
