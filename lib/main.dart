@@ -13,7 +13,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Shortcuts',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark().copyWith(
+      theme: ThemeData(
         primaryColor: Colors.deepPurple,
         primaryColorDark: Colors.deepPurple.shade700,
         primaryColorLight: Colors.deepPurple.shade200,
@@ -21,6 +21,7 @@ class App extends StatelessWidget {
           backgroundColor: Colors.deepPurple,
           centerTitle: true,
           elevation: 0,
+          toolbarHeight: 70,
         ),
         progressIndicatorTheme: const ProgressIndicatorThemeData(
           color: Colors.deepPurple,
@@ -28,6 +29,7 @@ class App extends StatelessWidget {
         floatingActionButtonTheme: const FloatingActionButtonThemeData(
           backgroundColor: Colors.deepPurple,
           foregroundColor: Colors.white,
+          elevation: 0,
         ),
       ),
       themeMode: ThemeMode.dark,

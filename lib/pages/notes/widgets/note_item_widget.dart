@@ -17,7 +17,7 @@ class NoteItemWidget extends StatelessWidget {
       padding: const EdgeInsets.all(14),
 
       decoration: BoxDecoration(
-        color: Theme.of(context).cardColor,
+        color: Theme.of(context).primaryColorLight.withOpacity(0.2),
         borderRadius: BorderRadius.circular(8),
       ),
       child: Row(
@@ -28,7 +28,7 @@ class NoteItemWidget extends StatelessWidget {
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
-              color: Theme.of(context).textTheme.bodyText1!.color,
+              color: Theme.of(context).primaryColor,
             ),
           ),
           IconButton(
