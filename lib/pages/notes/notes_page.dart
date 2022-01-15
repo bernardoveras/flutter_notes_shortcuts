@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:quick_actions/quick_actions.dart';
 import '../../main.dart';
@@ -42,22 +43,24 @@ class _NotesPageState extends State<NotesPage> {
   @override
   void initState() {
     super.initState();
-    quickActions.setShortcutItems([
-      const ShortcutItem(
-        type: 'note',
-        localizedTitle: 'Nova nota',
-        icon: 'ic_add.png',
-      ),
-    ]);
-    quickActions.initialize((type) async {
-      if (type == 'note') {
-        var note = await Navigator.pushNamed(context, AppRoutes.NEW_NOTES);
+    if (defaultTargetPlatform == TargetPlatform.iOS || defaultTargetPlatform == TargetPlatform.android) {
+      quickActions.setShortcutItems([
+        const ShortcutItem(
+          type: 'note',
+          localizedTitle: 'Nova nota',
+          icon: 'ic_add.png',
+        ),
+      ]);
+      quickActions.initialize((type) async {
+        if (type == 'note') {
+          var note = await Navigator.pushNamed(context, AppRoutes.NEW_NOTES);
 
-        if (note != null) {
-          addNote(note as String);
+          if (note != null) {
+            addNote(note as String);
+          }
         }
-      }
-    });
+      });
+    }
     fetch();
   }
 
